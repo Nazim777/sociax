@@ -4,10 +4,7 @@ import { ValidationError } from '../lib/shared/validator/validator.adaptor'
 import { StatusCodes } from 'http-status-codes'
 
 
-/**
- * @param schema
- * @returns
- */
+
 
 /**
  * VALIDATION MIDDLEWARE

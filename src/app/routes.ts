@@ -1,5 +1,5 @@
 import {Router,Request,Response,NextFunction} from 'express'
-import { authRoutes } from '../routes';
+import { authRoutes ,postRoutes} from '../routes';
 import { AuthMiddleware } from '../middleware';
 const router:Router = Router();
 
@@ -9,6 +9,7 @@ const router:Router = Router();
  * Routes for API version 01
  */
 router.use('/api/v1/auth',authRoutes)
+router.use('/api/v1/posts',AuthMiddleware.verifyUser,postRoutes)
 
 /**
  * ----- Health check for the application here ----
