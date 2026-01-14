@@ -1,1 +1,1 @@
-export {default as BcryptUtils} from './bcrypt.utils'
+export { default as BcryptUtils } from "./bcrypt.utils";

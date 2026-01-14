@@ -1,1 +1,1 @@
-export { default as ValidatorAdapter } from './validator.adaptor'
+export { default as ValidatorAdapter } from "./validator.adaptor";

@@ -15,7 +15,7 @@ class TokenUtils {
       expiresIn: time,
     };
 
-    const token =  jwt.sign(payload, this.jwtSecret, options);
+    const token = jwt.sign(payload, this.jwtSecret, options);
     return token;
   };
 

@@ -139,13 +139,16 @@ class PostController {
     }
   };
 
-
   /**
    * UPDATE POST CONTROLLER
    * @param req
    * @param res
    */
-  public updatePost = async (req: Request, res: Response, next: NextFunction) => {
+  public updatePost = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
     const id = req.params.postId;
     const post = { ...req.body };
 
@@ -163,19 +166,22 @@ class PostController {
         success: true,
         docs,
       });
-
     } catch (error) {
       console.error(`Error when update post: ${error}`);
       next(error);
     }
-  }
+  };
 
   /**
    * DELETE POST CONTROLLER
    * @param req
    * @param res
    */
-  public deletePost = async (req: Request, res: Response, next: NextFunction) => {
+  public deletePost = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
     const id = req.params.postId;
 
     try {
@@ -184,14 +190,13 @@ class PostController {
 
       res.status(200).json({
         success: true,
-        message: 'Post Deleted Successfully!',
+        message: "Post Deleted Successfully!",
       });
-
     } catch (error) {
       console.error(`Error when update post: ${error}`);
       next(error);
     }
-  }
+  };
 }
 
 export default PostController;

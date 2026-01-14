@@ -1,1 +1,1 @@
-export {default as errorResponse} from './error'
+export { default as errorResponse } from "./error";

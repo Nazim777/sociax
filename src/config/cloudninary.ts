@@ -1,5 +1,5 @@
-import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
-import dotenv from 'dotenv';
+import { v2 as cloudinary, UploadApiResponse } from "cloudinary";
+import dotenv from "dotenv";
 
 // Load environment variables from `.env` file
 dotenv.config();

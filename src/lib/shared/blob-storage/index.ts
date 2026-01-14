@@ -1,1 +1,1 @@
-export {default as BlogStorageUtils} from './blob.storage.utils'
+export { default as BlogStorageUtils } from "./blob.storage.utils";

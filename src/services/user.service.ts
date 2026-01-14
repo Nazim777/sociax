@@ -1,6 +1,6 @@
 import { IUser } from "@/lib/type";
 import User from "../models/user.model";
-import {BlogStorageUtils} from "../lib/shared";
+import { BlogStorageUtils } from "../lib/shared";
 
 class UserService {
   private readonly userModelRepository: typeof User;
@@ -22,7 +22,7 @@ class UserService {
       const updatedUser = await this.userModelRepository.findByIdAndUpdate(
         userId,
         userInfo,
-        {new:true,runValidators:true}
+        { new: true, runValidators: true }
       );
       if (!updatedUser) throw new Error("Error while try to update user info.");
       return updatedUser;
@@ -39,7 +39,7 @@ class UserService {
   public async showAllUsers(): Promise<Partial<IUser>[]> {
     try {
       const users = await this.userModelRepository.find({});
-      if (users.length===0) throw new Error("Users not found!");
+      if (users.length === 0) throw new Error("Users not found!");
       const newUsers = users.map((user: any) => ({
         _id: user._id,
         firstname: user.firstname,
@@ -67,13 +67,15 @@ class UserService {
     themeMode: string
   ): Promise<any> {
     try {
-        if(!userId) throw new Error('User id is required!');
-        if(!themeMode) throw new Error('Theme mode is required!')
-      const updatedUser = await this.userModelRepository.findByIdAndUpdate(
-        { _id: userId },
-        { themeMode: themeMode },
-        { new: true }
-      ).select("-password");
+      if (!userId) throw new Error("User id is required!");
+      if (!themeMode) throw new Error("Theme mode is required!");
+      const updatedUser = await this.userModelRepository
+        .findByIdAndUpdate(
+          { _id: userId },
+          { themeMode: themeMode },
+          { new: true }
+        )
+        .select("-password");
 
       if (!updatedUser) throw new Error("User not found to update!");
       return updatedUser;
@@ -94,7 +96,7 @@ class UserService {
       const user = await this.userModelRepository
         .findById(userId)
         .select("-password");
-        if(!user) throw new Error('Failed to get the user!')
+      if (!user) throw new Error("Failed to get the user!");
       return user;
     } catch (error) {
       console.error(`Error get user service: ${error}`);
@@ -102,54 +104,74 @@ class UserService {
     }
   }
 
-
   /**
    * upload profile picture
    * @param userId
-   * @param file 
+   * @param file
    */
   // region profile pic upload
 
-  public uploadProfilePicture = async(userId:string,file:Express.Multer.File | undefined)=>{
+  public uploadProfilePicture = async (
+    userId: string,
+    file: Express.Multer.File | undefined
+  ) => {
     try {
-        if(!userId) throw new Error('User id is required!');
-        if(!file) throw new Error('No file uploaded!');
-        //upload file to claudinary
-        const uploaded_secure_url = await BlogStorageUtils.uploadImage(file,'profile_uploads');
-        // update user profile picture
-        const updatedUser = await this.userModelRepository.findByIdAndUpdate(userId,{profilePhoto:uploaded_secure_url},{new:true}).select('-password');
-      if(!updatedUser) throw new Error('User not found!');
+      if (!userId) throw new Error("User id is required!");
+      if (!file) throw new Error("No file uploaded!");
+      //upload file to claudinary
+      const uploaded_secure_url = await BlogStorageUtils.uploadImage(
+        file,
+        "profile_uploads"
+      );
+      // update user profile picture
+      const updatedUser = await this.userModelRepository
+        .findByIdAndUpdate(
+          userId,
+          { profilePhoto: uploaded_secure_url },
+          { new: true }
+        )
+        .select("-password");
+      if (!updatedUser) throw new Error("User not found!");
       return updatedUser;
     } catch (error) {
-        console.log('Failed to upload profile picture service',error)
-        throw error;
-        
+      console.log("Failed to upload profile picture service", error);
+      throw error;
     }
-  }
+  };
 
   /**
    * upload profile picture
    * @param userId
-   * @param file 
+   * @param file
    */
   // region cover pic upload
-  public uploadCoverPicture = async(userId:string, file:Express.Multer.File | undefined)=>{
+  public uploadCoverPicture = async (
+    userId: string,
+    file: Express.Multer.File | undefined
+  ) => {
     try {
-        if(!userId) throw new Error('User id is required!');
-        if(!file) throw new Error('No file uploaded!');
-        //upload file to claudinary
-        const uploaded_secure_url = await BlogStorageUtils.uploadImage(file,'cover_uploads');
-        // update user cover picture
-        const updatedUser = await this.userModelRepository.findByIdAndUpdate(userId,{coverPhoto:uploaded_secure_url},{new:true}).select('-password');
-        if(!updatedUser) throw new Error('User not found!');
-        return updatedUser;
+      if (!userId) throw new Error("User id is required!");
+      if (!file) throw new Error("No file uploaded!");
+      //upload file to claudinary
+      const uploaded_secure_url = await BlogStorageUtils.uploadImage(
+        file,
+        "cover_uploads"
+      );
+      // update user cover picture
+      const updatedUser = await this.userModelRepository
+        .findByIdAndUpdate(
+          userId,
+          { coverPhoto: uploaded_secure_url },
+          { new: true }
+        )
+        .select("-password");
+      if (!updatedUser) throw new Error("User not found!");
+      return updatedUser;
     } catch (error) {
-        console.log('Failed to upload cover picture service',error)
-        throw error;
+      console.log("Failed to upload cover picture service", error);
+      throw error;
     }
-  }
-
-
+  };
 
   /**
    * GET FOLLOW SUGGESTED USERS

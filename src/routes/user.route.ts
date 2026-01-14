@@ -34,5 +34,4 @@ router
   .route("/update-cover-picture")
   .patch(ImageUpload.single("file"), userController.uploadCoverPicture);
 
-
 export default router;

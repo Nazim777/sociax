@@ -19,10 +19,12 @@ class AuthValidation {
   });
 
   static loginUser = z.object({
-    email:z.string().email("Invalid email format"),
-    password:z.string().min(8,'Password must be at least 8 character').max(50,'Password can not be more then 50 character')
-  })
+    email: z.string().email("Invalid email format"),
+    password: z
+      .string()
+      .min(8, "Password must be at least 8 character")
+      .max(50, "Password can not be more then 50 character"),
+  });
 }
-
 
 export default AuthValidation;

@@ -49,7 +49,7 @@ class UserController {
     next: NextFunction
   ) => {
     const userId = (req as any)?.user?._id;
-    console.log('userId',userId)
+    console.log("userId", userId);
     const themeMode = req.body.themeMode;
     try {
       const updateduser = await this.userService.updateThemeMode(
@@ -111,7 +111,7 @@ class UserController {
         profilePhoto,
         themeMode,
         colorMode,
-        coverPhoto
+        coverPhoto,
       } = (req as any).user as IUser;
       res.status(200).json({
         isAuth: true,
@@ -148,13 +148,11 @@ class UserController {
     const file = req.file;
     try {
       const user = await this.userService.uploadProfilePicture(userId, file);
-      res
-        .status(200)
-        .json({
-          success: true,
-          message: "Profile picture uploaded successfully!",
-          user,
-        });
+      res.status(200).json({
+        success: true,
+        message: "Profile picture uploaded successfully!",
+        user,
+      });
     } catch (error) {
       console.log("failed to uplaod profile picture ", error);
       next(error);
@@ -176,13 +174,11 @@ class UserController {
       const userId = (req as any).user?._id;
       const file = req.file;
       const user = await this.userService.uploadCoverPicture(userId, file);
-      res
-        .status(200)
-        .json({
-          success: true,
-          message: "Cover picture updated successfully!",
-          user,
-        });
+      res.status(200).json({
+        success: true,
+        message: "Cover picture updated successfully!",
+        user,
+      });
     } catch (error) {
       console.log("failed to uplaod profile picture ", error);
       next(error);
