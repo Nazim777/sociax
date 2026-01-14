@@ -21,36 +21,7 @@ A production-ready backend starter built with **Node.js**, **Express 5**, **Type
 
 ---
 
-## 📁 Project Structure
 
-```bash
-src/
-├── app.ts                # Express app setup
-├── server.ts             # Server entry point
-├── config/               # Environment & DB config
-│   ├── db.ts
-│   └── cloudinary.ts
-├── modules/              # Feature-based modules
-│   ├── auth/
-│   │   ├── auth.controller.ts
-│   │   ├── auth.service.ts
-│   │   ├── auth.route.ts
-│   │   └── auth.schema.ts
-│   └── user/
-├── middlewares/          # Custom middlewares
-│   ├── auth.middleware.ts
-│   ├── error.middleware.ts
-│   └── validate.middleware.ts
-├── utils/                # Helpers & utilities
-│   ├── jwt.ts
-│   ├── response.ts
-│   └── asyncHandler.ts
-├── constants/            # App constants
-├── routes/               # Route registry
-└── types/                # Global TS types
-```
-
----
 
 ## 🛠 Tech Stack
 
@@ -82,17 +53,19 @@ npm install
 Create a `.env` file in the root directory:
 
 ```env
-PORT=5000
 NODE_ENV=development
+APP_NAME=Conexa
+AUTHOR=MOHAMMADNAZIM
+HOST=localhost
+PORT=8080
+SECRET=SUPERSECRET
+MONGO_URI=
 
-DATABASE_URL=mongodb://localhost:27017/app
-
-JWT_SECRET=your_jwt_secret
-JWT_EXPIRES_IN=7d
-
-CLOUDINARY_CLOUD_NAME=xxx
-CLOUDINARY_API_KEY=xxx
-CLOUDINARY_API_SECRET=xxx
+CLOUDINARY_CLOUD_NAME=djktvs2yq
+CLOUDINARY_API_KEY=842923549173773
+CLOUDINARY_API_SECRET=qYw3z_3LRbUS6QTFUzdwTxElKFc
+ACCESS_TOKEN_EXPIRES=2h
+REFRESH_TOKEN_EXPIRES=7d
 ```
 
 ---

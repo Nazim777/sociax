@@ -53,7 +53,7 @@ class PostService {
       return post;
     } catch (error) {
       console.log("Error fetching post", error);
-      throw new Error("Failed to read post");
+      throw error;
     }
   }
 
@@ -107,7 +107,7 @@ class PostService {
       return updatedPost;
     } catch (error) {
       console.log("Error updating post", error);
-      throw new Error("Failed to update post!");
+      throw error;
     }
   }
 
@@ -126,7 +126,7 @@ class PostService {
       return deletedPost;
     } catch (error) {
       console.log("Error deleting post", error);
-      throw new Error("Failed to delete post!");
+      throw error;
     }
   }
 
